@@ -1,4 +1,4 @@
-package com.nitrogen.hydro.fragements;
+package com.nitrogen.hydro;
 
 import android.os.Bundle;
 
@@ -7,8 +7,6 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.nitrogen.hydro.R;
 
 public class LoginFragment extends Fragment {
     @Override

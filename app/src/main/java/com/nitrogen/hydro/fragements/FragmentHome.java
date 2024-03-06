@@ -33,7 +33,6 @@ public class FragmentHome extends Fragment {
 
     View view;
     AppCompatTextView fab ;
-
     Dialog dDialog;
     AlertDialog.Builder alert;
     AlertDialog dialog;
@@ -64,22 +63,6 @@ public class FragmentHome extends Fragment {
         view.findViewById(R.id.price).setOnClickListener((v) -> {
             showDialog();
         });
-        view.findViewById(R.id.refral).setOnClickListener((v) -> {
-            Intent sendIntent = new Intent(Intent.ACTION_SEND)
-                    .setType("text/plain")
-                    .putExtra(Intent.EXTRA_TEXT, "سلام چطوری؟ من هیدرو رو نصب کردم، خیلی عالییه، یه اپلیکیشن برای همشهریان همدانی" +
-                            "\n" +
-                            "هیدرو ");
-            getActivity().startActivity(Intent.createChooser(sendIntent, "هیدرو صرفه جویی در مصرف آب"));
-        });
-        fab = view.findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().startActivity(new Intent(getContext(), InsightsActivity.class));
-
-            }
-        });
         return view;
     }
     SeekBar seekBar;
@@ -98,12 +81,10 @@ public class FragmentHome extends Fragment {
                 kg.setText(sum+"تومان");
                 litr.setText(""+progress);
             }
-
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
 
             }
-
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
@@ -111,9 +92,7 @@ public class FragmentHome extends Fragment {
         });
         dDialog.show();
         dDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
     }
-
     private Point getScreenSize(Activity activity) {
         Point p = new Point();
         activity.getWindowManager().getDefaultDisplay().getSize(p);
