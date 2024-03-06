@@ -3,7 +3,6 @@ package com.nitrogen.hydro;
 public class MyModel {
    String shenase, date, score, color;
    int thrift;
-
     public int getThrift() {
         return thrift;
     }

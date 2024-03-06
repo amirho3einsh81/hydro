@@ -62,8 +62,7 @@
         android:id="@+id/bnv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/revers_500"
-        app:backgroundTint="@color/revers_500"
+        android:background="@color/nav"
         app:menu="@menu/main_menu"
         android:layout_alignParentBottom="true"/>
 

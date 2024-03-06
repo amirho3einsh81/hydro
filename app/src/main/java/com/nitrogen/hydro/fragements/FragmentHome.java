@@ -76,7 +76,8 @@ public class FragmentHome extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getContext().startActivity(new Intent(getContext(), InsightsActivity.class));
+                getActivity().startActivity(new Intent(getContext(), InsightsActivity.class));
+
             }
         });
         return view;

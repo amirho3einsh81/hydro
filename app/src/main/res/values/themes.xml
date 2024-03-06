@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Hydro" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="fontFamily">@font/font_sans_medium</item>
+        <item name="android:fontFamily">@font/iran_yekan_x_w700</item>
         <item name="android:layoutDirection">rtl</item>
         <item name="buttonIconTint">@color/gray_700</item>
         <item name="android:buttonTint">@color/gray_700</item>
