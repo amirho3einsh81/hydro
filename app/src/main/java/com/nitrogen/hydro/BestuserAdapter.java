@@ -41,7 +41,6 @@ public class BestuserAdapter extends RecyclerView.Adapter<BestuserAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-
         AppCompatTextView name, thrift;
         LinearLayoutCompat color;
         RelativeLayout root;

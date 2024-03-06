@@ -15,9 +15,8 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
-public class SplashActivity extends AppCompatActivity {
+public class StartActivity extends AppCompatActivity {
 
     Dialog dDialog;
 
@@ -34,9 +33,9 @@ public class SplashActivity extends AppCompatActivity {
                 public void run() {
                     finish();
                     if (getSharedPreferences("account" , MODE_PRIVATE).getBoolean("open" , false) == true){
-                        startActivity(new Intent(SplashActivity.this , MainActivity.class));
+                        startActivity(new Intent(StartActivity.this , MainActivity.class));
                     }else {
-                        startActivity(new Intent(SplashActivity.this , LoginActivity.class));
+                        startActivity(new Intent(StartActivity.this , LoginActivity.class));
                     }
                 }
             } , 2000);
@@ -47,8 +46,8 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     public void showDisConnectApp() {
-        AlertDialog.Builder aAlert = new AlertDialog.Builder(SplashActivity.this);
-        View vAlert = LayoutInflater.from(SplashActivity.this).inflate(R.layout.errorwifi_dialog, null);
+        AlertDialog.Builder aAlert = new AlertDialog.Builder(StartActivity.this);
+        View vAlert = LayoutInflater.from(StartActivity.this).inflate(R.layout.errorwifi_dialog, null);
         aAlert.setView(vAlert);
         Button bYes = vAlert.findViewById(R.id.btnRetry);
 
@@ -72,7 +71,7 @@ public class SplashActivity extends AppCompatActivity {
     boolean isConnectedToInternet() {
 
         ConnectivityManager cm =
-                (ConnectivityManager)SplashActivity.this.getSystemService(Context.CONNECTIVITY_SERVICE);
+                (ConnectivityManager) StartActivity.this.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         boolean isConnected = activeNetwork != null &&
