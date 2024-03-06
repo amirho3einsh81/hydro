@@ -83,11 +83,9 @@ public class FragmentHome extends Fragment {
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
             }
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
         });
         dDialog.show();

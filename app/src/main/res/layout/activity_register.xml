@@ -4,12 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/revers_500"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
->
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:layout_marginTop="56dp"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -17,15 +18,14 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            android:transitionName="img_nitrogen_big"
-            app:srcCompat="@drawable/ic_hidro" />
+            android:transitionName="img_nitrogen_big"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="32dp"
-            android:text="ورود به حساب کاربری"
+            android:text="ساخت حساب کاربری"
             android:textColor="@color/gray_700" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -44,10 +44,9 @@
             app:boxCornerRadiusTopStart="12dp"
             app:boxStrokeColor="@color/green_700"
             app:counterEnabled="true"
-            app:counterMaxLength="26"
-            app:helperTextTextColor="@color/gray_500"
-            app:hintTextColor="@color/gray_500"
-            app:startIconDrawable="@drawable/ic_account1">
+            app:counterMaxLength="32"
+            app:helperTextTextColor="@color/green_700"
+            app:hintTextColor="@color/gray_500">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/in_username"
@@ -56,9 +55,39 @@
                 android:gravity="center_vertical|start"
                 android:inputType="textVisiblePassword"
                 android:lines="1"
-                android:maxEms="14"
-                android:typeface="serif"
                 android:maxLength="26"
+                android:textSize="14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layer_phone"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:hint="شماره"
+            android:textColorHint="@color/gray_500"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxStrokeColor="@color/green_700"
+            app:counterEnabled="true"
+            app:counterMaxLength="10"
+            app:helperTextTextColor="@color/green_700"
+            app:hintTextColor="@color/gray_500"
+            app:prefixText="+98 "
+            app:prefixTextColor="@color/gray_500">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/in_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:digits="0123456789+"
+                android:gravity="center_vertical|start"
+                android:inputType="phone"
+                android:lines="1"
+                android:maxLength="10"
                 android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -80,9 +109,8 @@
             app:counterMaxLength="14"
             app:errorContentDescription="نباید بیش از حد مجاز کاراکتر وارد کنید"
             app:errorEnabled="true"
-            app:helperTextTextColor="@color/gray_500"
-            app:hintTextColor="@color/gray_500"
->
+            app:helperTextTextColor="@color/green_700"
+            app:hintTextColor="@color/gray_500">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/in_pass"
                 android:layout_width="match_parent"
@@ -91,68 +119,39 @@
                 android:inputType="textVisiblePassword"
                 android:lines="1"
                 android:maxEms="14"
-                android:typeface="serif"
                 android:maxLength="14"
                 android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/forget_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
-            android:text="فراموشی رمز عبور!"
-            android:textColor="@color/gray_500"
-            android:textSize="12sp" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="48dp"
             android:background="@drawable/button_filledbox"
             android:backgroundTint="@color/green_700"
             android:gravity="center"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
-            android:text="ورود"
+            android:text="ادامه"
             android:textColor="@color/wight" />
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
-            android:orientation="horizontal">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/register"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingLeft="6dp"
-                android:paddingTop="6dp"
-                android:paddingRight="6dp"
-                android:paddingBottom="6dp"
-                android:text="ثبت نام کردن"
-                android:textColor="@color/gray_700"
-                android:textSize="10sp" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingTop="6dp"
-                android:paddingBottom="6dp"
-                android:text="حساب کاربری ندارم"
-                android:textColor="@color/gray_500"
-                android:textSize="10sp" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
+            android:layout_marginEnd="32dp"
+            android:paddingLeft="12dp"
+            android:paddingTop="6dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="6dp"
+            android:text="حساب کاربری دارم"
+            android:textColor="@color/gray_700"
+            android:textSize="10sp" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </RelativeLayout>

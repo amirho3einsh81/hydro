@@ -1,150 +1,239 @@
 package com.nitrogen.hydro;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatTextView;
-
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.IpSecManager;
 import android.os.Bundle;
-import android.os.CountDownTimer;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.navigation.Navigation;
+
 import android.os.Handler;
-import android.telephony.CellSignalStrength;
+import android.text.InputFilter;
+import android.text.Spanned;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.ProgressBar;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.nitrogen.hydro.customeviews.ProgressDialog;
 import com.nitrogen.hydro.utils.FirstPrifrence;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.nio.charset.StandardCharsets;
+
 public class LoginActivity extends AppCompatActivity {
-    CountDownTimer cdt;
-    int cdtTime = 3;
-    Handler mainHandler = new Handler();
-    TextInputLayout layNumber, layPassword;
-    TextInputEditText etNumber, etPassword;
-    AppCompatTextView btnRegister;
-    AppCompatTextView submit;
-    String http_url;
-    SharedPreferences pref;
+
+    AppCompatTextView btnSubmit, btnRegister;
+    TextInputEditText inUsermethod, inPass;
+    TextInputLayout layUsername, layPass;
+    Handler h = new Handler();
     RequestQueue queue;
+    ProgressBar loading;
+    SharedPreferences pref;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
         queue = Volley.newRequestQueue(this);
-        http_url = getResources().getString(R.string.http_url);
-        pref = getSharedPreferences("account" , MODE_PRIVATE);
-        etNumber = findViewById(R.id.et_number);
-        etPassword = findViewById(R.id.et_password);
-        btnRegister = findViewById(R.id.btn_register);
-        submit = findViewById(R.id.submit);
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (checkFilds()){
-                    mainHandler.postDelayed(run,300);
-                }
-            }
-        });
+        pref = getSharedPreferences("account", Context.MODE_PRIVATE);
+        dialog = new ProgressDialog(this);
+        initViews();
+
     }
-    private boolean checkFilds() {
-        action(layNumber, "",false);
-        action(layPassword, "",false);
-        if (etNumber.getText().toString().isEmpty()){
-            action(layNumber, "لطفا شماره خودرا وارد نمایید",true);
-            return false;
-        } else if (!etNumber.getText().toString().startsWith("9")) {
-            action(layNumber, "شماره باید با 9 شروع شود",true);
-            return false;
-        } else if (etNumber.getText().toString().length()<10 || etNumber.getText().toString().length()>10) {
-            action(layNumber, "فرمت شماره باید ده رقمی باشد",true);
-            return false;
-        }
-        if (etPassword.getText().toString().isEmpty()){
-            action(layPassword, "رمز عبور خودرا وارد کنید",true);
+
+    private boolean notStartUsername(String s) {
+        if (s.startsWith("_") || s.startsWith(".")) {
             return false;
         }
         return true;
     }
-    public void time() {
-        cdt = new CountDownTimer(cdtTime * 40000, 1000) {
-            public void onTick(long millisUntilFinished) {
-//                timer.setText((millisUntilFinished / 1000) + " " + " ثانیه مانده");
-//                timer.setVisibility(View.VISIBLE);
-            }
-            @Override
-            public void onFinish() {
-//                timer.setText("ارسال مجدد کد فعالسازی");
-            }
-        }.start();
-    }
-    Runnable run = new Runnable() {
-        @Override
-        public void run() {
-            getdata();
-        }
-    };
-    private void getdata() {
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("number",etNumber.getText().toString().trim());
-            jsonObject.put("password" , etPassword.getText().toString().trim());
-        }catch (JSONException ignored){
-        }
-        JsonObjectRequest request = new JsonObjectRequest(
-                Request.Method.POST,
-                http_url + "login.php",
-                new JSONObject(),
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            if (response.getString("state").equals("0") &&
-                                    response.getString("object").equals("password")) {
-                                action(layPassword, "رمزعبور یا اکانت وارد شده نادرست است", true);
-                            } else if (response.getString("state").equals("0") &&
-                                    response.getString("object").equals("username")) {
-                                action(layNumber, "حسابی با این اطلاعات پیدا نشد", true);
-                            } else {
-                                action(layNumber, "", false);
-                                action(layPassword, "", false);
-                                pref.edit().putString("number",etNumber.getText().toString())
-                                        .putString("password" , etPassword.getText().toString())
-                                        .putBoolean("isLogin", true).apply();
-                                FirstPrifrence preference = new FirstPrifrence(LoginActivity.this, "values");
-                                preference.setPrefvalue(false);
-                                startActivity(new Intent(LoginActivity.this, StartActivity.class));
-                                finish();
-                            }
-                        } catch (JSONException e) {
-//                    throw new RuntimeException(e);
-                            Log.e("exception", e.getMessage());
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
 
+    private void initViews() {
+        btnSubmit = findViewById(R.id.submit);
+        btnRegister = findViewById(R.id.register);
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            }
+        });
+        loading = findViewById(R.id.process);
+        inUsermethod = findViewById(R.id.in_username);
+        inUsermethod.setFilters(new InputFilter[]{
+                new InputFilter() {
+                    public CharSequence filter(CharSequence src, int start,
+                                               int end, Spanned dst, int dstart, int dend) {
+                        if (src.toString().matches("[a-zA-Z0-9_.]")) {
+                            return src;
+                        }
+                        return "";
                     }
-                });
-        queue.add(request);
+                }});
+        layUsername = findViewById(R.id.layer_username);
+        layPass = findViewById(R.id.layer_pass);
+        inPass = findViewById(R.id.in_pass);
+        inPass.setFilters(new InputFilter[]{new InputFilter() {
+            public CharSequence filter(CharSequence src, int start,
+                                       int end, Spanned dst, int dstart, int dend) {
+                Log.e("tag", "start: " + start + " dstart: " + dstart + " end: " + end + " dend: " + dend);
+                if (src.toString().matches("[a-zA-Z0-9!@#$%&*?._]")) {
+                    return src;
+                }
+                return "";
+            }
+        }});
+        btnSubmit.setOnClickListener(v -> {
+            h.removeCallbacks(getUsername);
+            h.postDelayed(getUsername, 500);
+            dialog.show();
+        });
     }
+
+    private boolean checkPhoneSyntax(String phoneNum) {
+        if (phoneNum.startsWith("9")) {
+            return true;
+        }
+        return false;
+    }
+
     private void action(TextInputLayout til, String msg, boolean state) {
         til.setErrorEnabled(state);
         til.setError(msg);
     }
 
+    Runnable getUsername = new Runnable() {
+        @Override
+        public void run() {
+            if (isOk()) {
+                checkUser();
+            }
+        }
+    };
+
+    ProgressDialog dialog;
+
+    private void checkUser() {
+        String url = getResources().getString(R.string.http_url);
+//      Request a string response from the provided URL.
+        JSONObject object = new JSONObject();
+        try {
+            object.put("usermethod", inUsermethod.getText().toString());
+            byte[] pass = Base64.encode(inPass.getText().toString().getBytes(StandardCharsets.UTF_8), Base64.DEFAULT);
+            object.put("password", inPass.getText().toString());
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+        String body = object.toString();
+        JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST
+                , url + "login.php"
+                , new JSONObject()
+                , new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    if (response.getString("state").equals("0") &&
+                            response.getString("object").equals("password")) {
+                        action(layPass, "رمزعبور یا اکانت وارد شده نادرست است", true);
+                    } else if (response.getString("state").equals("0") &&
+                            response.getString("object").equals("username")) {
+                        action(layUsername, "حسابی با این اطلاعات پیدا نشد", true);
+                    } else {
+                        action(layPass, "", false);
+                        action(layUsername, "", false);
+                        pref.edit()
+                                .putString("username", response.getJSONObject("information").getString("username"))
+                                .putString("name", response.getJSONObject("information").getString("name"))
+                                .putString("gender", response.getJSONObject("information").getString("gender"))
+                                .putString("biography", response.getJSONObject("information").getString("biography"))
+                                .putString("password", inPass.getText().toString())
+                                .putBoolean("isLogin", true).apply();
+                        FirstPrifrence preference = new FirstPrifrence(LoginActivity.this, "");
+                        preference.setPrefvalue(false);
+                        startActivity(new Intent(LoginActivity.this, StartActivity.class));
+                        finish();
+                    }
+                } catch (JSONException e) {
+//                    throw new RuntimeException(e);
+                    Log.e("exception", e.getMessage());
+                }
+                Log.e("exception", response.toString());
+                dialog.dismiss();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("exception", "error: " + error.getMessage().toString());
+                dialog.dismiss();
+            }
+        }) {
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+
+            @Override
+            public byte[] getBody() {
+                return body.getBytes(StandardCharsets.UTF_8);
+            }
+        };
+        queue.add(arrReq);
+    }
+
+    private boolean isOk() {
+        if (inUsermethod.getText().toString().isEmpty()) {
+            action(layUsername, "لطفا یک نام کاربری انتخاب کنید", true);
+            dialog.dismiss();
+            return false;
+        } else {
+            if (inUsermethod.getText().toString().length() < 4) {
+                action(layUsername, "نام کاربری کمتر از4 کاراکتر است", true);
+                dialog.dismiss();
+                return false;
+            } else {
+                action(layUsername, "", false);
+            }
+        }
+        if (inPass.getText().toString().isEmpty()) {
+            action(layPass, "لطفا یک رمز عبور انتخاب کنید", true);
+            dialog.dismiss();
+            return false;
+        } else {
+            if (inPass.getText().toString().length() < 6) {
+                action(layPass, "رمز عبور نباید کمتر از6 کاراکتر باشد", true);
+                dialog.dismiss();
+                return false;
+            } else {
+                action(layPass, "", false);
+            }
+        }
+        dialog.dismiss();
+        return true;
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        h.removeCallbacks(getUsername);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        h.removeCallbacks(getUsername);
+    }
 }
