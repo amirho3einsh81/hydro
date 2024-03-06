@@ -29,12 +29,10 @@ public class BestuserAdapter extends RecyclerView.Adapter<BestuserAdapter.ViewHo
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(ctx).inflate(R.layout.item_user, parent,false));
     }
-
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.fill(userModelList.get(position));
     }
-
     @Override
     public int getItemCount() {
         return userModelList.size();

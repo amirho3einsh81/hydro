@@ -16,6 +16,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 
+import com.nitrogen.hydro.utils.InternetCheck;
+
 public class StartActivity extends AppCompatActivity {
 
     Dialog dDialog;
@@ -25,7 +27,8 @@ public class StartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        if (isConnectedToInternet()) {
+        InternetCheck check = new InternetCheck(this);
+        if (check.isConnected()) {
 
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -67,18 +70,5 @@ public class StartActivity extends AppCompatActivity {
         dDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         dDialog.show();
-    }
-    boolean isConnectedToInternet() {
-
-        ConnectivityManager cm =
-                (ConnectivityManager) StartActivity.this.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        boolean isConnected = activeNetwork != null &&
-                activeNetwork.isConnectedOrConnecting();
-
-
-        return isConnected;
-
     }
 }

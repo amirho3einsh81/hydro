@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/revers_500"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.RegisterFragment">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="56dp"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_nitrogen"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:transitionName="img_nitrogen_big"
+            app:srcCompat="@drawable/ic_nitrogen" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
+            android:text="ساخت حساب کاربری"
+            android:textColor="@color/gray_700" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layer_username"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:hint="نام کاربری"
+            android:textColorHint="@color/gray_500"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxStrokeColor="@color/green_700"
+            app:boxStrokeErrorColor="@color/red_700"
+            app:counterEnabled="true"
+            app:counterMaxLength="32"
+            app:errorIconTint="@color/red_700"
+            app:errorTextColor="@color/red_700"
+            app:helperTextTextColor="@color/green_700"
+            app:hintTextColor="@color/gray_500"
+            app:startIconDrawable="@drawable/ic_at">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/in_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|start"
+                android:inputType="textVisiblePassword"
+                android:lines="1"
+                android:maxLength="26"
+                android:textSize="14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layer_phone"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:hint="@string/phonenumber"
+            android:textColorHint="@color/gray_500"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxStrokeColor="@color/green_700"
+            app:boxStrokeErrorColor="@color/red_700"
+            app:counterEnabled="true"
+            app:counterMaxLength="10"
+            app:errorIconTint="@color/red_700"
+            app:errorTextColor="@color/red_700"
+            app:helperTextTextColor="@color/green_700"
+            app:hintTextColor="@color/gray_500"
+            app:prefixText="+98 "
+            app:prefixTextColor="@color/gray_500"
+            app:startIconDrawable="@drawable/ic_phone">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/in_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:digits="0123456789+"
+                android:gravity="center_vertical|start"
+                android:inputType="phone"
+                android:lines="1"
+                android:maxLength="10"
+                android:textSize="14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layer_pass"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:hint="@string/pass"
+            android:textColorHint="@color/gray_500"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxStrokeColor="@color/green_700"
+            app:boxStrokeErrorColor="@color/red_700"
+            app:counterEnabled="true"
+            app:counterMaxLength="14"
+            app:errorContentDescription="نباید بیش از حد مجاز کاراکتر وارد کنید"
+            app:errorEnabled="true"
+            app:errorIconTint="@color/red_700"
+            app:errorTextColor="@color/red_700"
+            app:helperTextTextColor="@color/green_700"
+            app:hintTextColor="@color/gray_500"
+            app:startIconDrawable="@drawable/ic_key">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/in_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|start"
+                android:inputType="textVisiblePassword"
+                android:lines="1"
+                android:maxEms="14"
+                android:maxLength="14"
+                android:textSize="14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="48dp"
+            android:background="@drawable/button_filledbox"
+            android:backgroundTint="@color/green_700"
+            android:gravity="center"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:text="ادامه"
+            android:textColor="@color/wight" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/bg_ripple_hide"
+            android:paddingLeft="12dp"
+            android:paddingTop="6dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="6dp"
+            android:text="حساب کاربری دارم"
+            android:textColor="@color/gray_700"
+            android:textSize="10sp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</RelativeLayout>

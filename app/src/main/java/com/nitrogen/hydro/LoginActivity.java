@@ -15,12 +15,15 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.nitrogen.hydro.utils.FirstPrifrence;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,22 +33,23 @@ public class LoginActivity extends AppCompatActivity {
     int cdtTime = 3;
     Handler mainHandler = new Handler();
     TextInputLayout layNumber, layPassword;
-    TextInputEditText etNumber,  etPassword;
+    TextInputEditText etNumber, etPassword;
     AppCompatTextView btnRegister;
     AppCompatTextView submit;
     String http_url;
     SharedPreferences pref;
+    RequestQueue queue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        queue = Volley.newRequestQueue(this);
         http_url = getResources().getString(R.string.http_url);
         pref = getSharedPreferences("account" , MODE_PRIVATE);
         etNumber = findViewById(R.id.et_number);
         etPassword = findViewById(R.id.et_password);
         btnRegister = findViewById(R.id.btn_register);
         submit = findViewById(R.id.submit);
-
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,14 +90,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         }.start();
     }
-
     Runnable run = new Runnable() {
         @Override
         public void run() {
             getdata();
         }
     };
-
     private void getdata() {
         JSONObject jsonObject = new JSONObject();
         try {
@@ -121,6 +123,8 @@ public class LoginActivity extends AppCompatActivity {
                                 pref.edit().putString("number",etNumber.getText().toString())
                                         .putString("password" , etPassword.getText().toString())
                                         .putBoolean("isLogin", true).apply();
+                                FirstPrifrence preference = new FirstPrifrence(LoginActivity.this, "values");
+                                preference.setPrefvalue(false);
                                 startActivity(new Intent(LoginActivity.this, StartActivity.class));
                                 finish();
                             }
@@ -136,6 +140,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     }
                 });
+        queue.add(request);
     }
     private void action(TextInputLayout til, String msg, boolean state) {
         til.setErrorEnabled(state);

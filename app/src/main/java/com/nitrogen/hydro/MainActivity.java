@@ -24,12 +24,10 @@ import com.nitrogen.hydro.fragements.WithdrawalFragment;
 public class MainActivity extends AppCompatActivity
         implements BottomNavigationView
         .OnNavigationItemSelectedListener {
-
     BottomNavigationView bottomNavigationView;
     AppCompatTextView name;
     BottomSheetDialog bottomSheetDialog;
     AppCompatImageView btnmenu;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
