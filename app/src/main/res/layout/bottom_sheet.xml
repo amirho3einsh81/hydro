@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/nav">
+
+    <ImageView
+        android:layout_marginTop="12dp"
+        android:layout_width="35dp"
+        android:layout_height="2dp"
+        android:src="#878787"
+        android:layout_gravity="center|top"
+        android:scaleType="centerCrop" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="سامانه هیدرو، بفرمائین؟"
+            android:textColor="@color/bg_700"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp" />
+        <TextView
+            android:text="در خدمتیم، چطور میتونیم کمکتون کنیم؟"
+            android:fontFamily="@font/iran_yekan_x_w400"
+            android:gravity="right"
+            android:id="@+id/tvban"
+            android:layout_margin="5dp"
+            android:textSize="10dp"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btn_call"
+            android:fontFamily="@font/iran_yekan_x_w400"
+            android:layout_width="400dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center_vertical"
+            android:drawableStart="@drawable/ic_call"
+            android:layout_gravity="center"
+            android:text="  تماس با پشتیبانی"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:background="#B9B9B9"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btn_about"
+            android:fontFamily="@font/iran_yekan_x_w400"
+            android:layout_width="400dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:drawableStart="@drawable/ic_text"
+            android:layout_marginEnd="16dp"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:text="  درباره اپلیکیشن"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSupport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/blue_900"
+            android:backgroundTint="@color/blue_200"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_bottun"
+            android:elevation="0dp"
+            android:text="بستن این منو" />
+</LinearLayout>

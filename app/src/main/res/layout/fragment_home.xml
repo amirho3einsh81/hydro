@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/refresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/banner"
+        app:srcCompat="@drawable/shop"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="250dp" />
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/btns"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/banner"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_bottun"
+            android:drawableStart="@drawable/ic_text"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="قیمت لیتر صرفه جویی"
+            android:textColor="@color/gray_500"
+            android:textSize="11sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/refral"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_bottun"
+            android:drawableStart="@drawable/ic_link"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="معرفی به دوستان"
+            android:textColor="@color/gray_500"
+            android:textSize="11sp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/btns"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/abi" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/iran_yekan_x_w700"
+                android:gravity="center"
+                android:text="فعالیتی مشاهده نشد!"
+                android:textColor="@color/gray_500"
+                android:textSize="15sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="400dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/iran_yekan_x_w400"
+                android:gravity="center"
+                android:text="کافیه روی دکمه زیر بزنین و فعالیتتون رو مشاهده کنید:)"
+                android:textColor="@color/gray_500"
+                android:textSize="13sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fab"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_bottun"
+                android:backgroundTint="@color/blue_500"
+                android:fontFamily="@font/iran_yekan_x_w700"
+                android:gravity="center"
+                android:text="نمایش فعالیت من"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </RelativeLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

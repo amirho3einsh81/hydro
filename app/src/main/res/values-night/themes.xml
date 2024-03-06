@@ -1,0 +1,18 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Hydro" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="fontFamily">@font/font_sans_medium</item>
+        <item name="android:layoutDirection">rtl</item>
+        <item name="buttonIconTint">@color/gray_700</item>
+        <item name="android:buttonTint">@color/gray_700</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/revers_500</item>
+        <item name="android:navigationBarColor">@color/revers_500</item>
+        <!-- Customize your theme here. -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="statusBarScrim">@color/gray_700</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="navigationRailStyle">@color/gray_700</item>
+    </style>
+</resources>

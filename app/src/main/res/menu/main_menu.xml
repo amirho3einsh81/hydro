@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="خانه"
+        android:id="@+id/home"
+        android:icon="@drawable/home"
+        app:showAsAction="always"/>
+    <item android:title="کاربران برتر"
+        android:id="@+id/best"
+        android:icon="@drawable/ic_best"
+        app:showAsAction="always"/>
+    <item android:title="پروفایل"
+        android:icon="@drawable/account"
+        android:id="@+id/account"
+        app:showAsAction="always"/>
+</menu>

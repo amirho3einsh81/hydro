@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/revers_700">
+
+    <RelativeLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/revers_500">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btn_menu"
+            android:layout_width="24dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="16dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            app:srcCompat="@drawable/ic_menu"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btn_info"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_toStartOf="@id/btn_menu"
+            android:layout_marginEnd="24dp"
+            android:layout_centerVertical="true"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_info"/>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:orientation="vertical">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/blue_900"
+                android:text="محمد جواد سپهری" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:fontFamily="@font/iran_yekan_x_w500"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="اعتبار 0 تومان" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </RelativeLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/frameLayout"
+        android:layout_below="@id/appbar"
+        android:layout_above="@id/bnv"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bnv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/revers_500"
+        app:backgroundTint="@color/revers_500"
+        app:menu="@menu/main_menu"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>
