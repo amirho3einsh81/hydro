@@ -20,6 +20,7 @@
             android:layout_alignParentEnd="true"
             app:srcCompat="@drawable/ic_menu"/>
 
+
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/btn_info"
             android:layout_width="24dp"
@@ -42,7 +43,17 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/blue_900"
                 android:text="محمد جواد سپهری" />
+
+            <Button
+                android:text="خروج"
+                android:onClick="btnClick"
+                android:id="@+id/register_Button_delete"
+                android:layout_width="70dp"
+                android:layout_height="50dp"/>
+
+
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/activity_mainTextView"
                 android:fontFamily="@font/iran_yekan_x_w500"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

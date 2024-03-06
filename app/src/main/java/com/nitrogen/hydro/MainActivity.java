@@ -1,12 +1,16 @@
 package com.nitrogen.hydro;
 
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,10 +20,14 @@ import androidx.appcompat.widget.AppCompatTextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.nitrogen.hydro.customeviews.ProgressDialog;
 import com.nitrogen.hydro.fragements.AccountFragment;
 import com.nitrogen.hydro.fragements.BestusersFragment;
 import com.nitrogen.hydro.fragements.FragmentHome;
 import com.nitrogen.hydro.fragements.WithdrawalFragment;
+import com.nitrogen.hydro.utils.Utils;
+
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity
         implements BottomNavigationView
@@ -28,6 +36,16 @@ public class MainActivity extends AppCompatActivity
     AppCompatTextView name;
     BottomSheetDialog bottomSheetDialog;
     AppCompatImageView btnmenu;
+
+    SharedPreferences shared;
+    PublicFunctions pFunctions;
+    Constants cons;
+    String strUserName="" , strPassword="";
+
+    TextView activity_mainTextView;
+
+    ProgressDialog pb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +57,8 @@ public class MainActivity extends AppCompatActivity
         btnmenu = findViewById(R.id.btn_menu);
         bottomSheetDialog = new BottomSheetDialog(this);
         bottomSheetDialog.setContentView(R.layout.bottom_sheet);
+        init();
+
         btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -163,4 +183,139 @@ public class MainActivity extends AppCompatActivity
             isExit = true;
         }
     }
+    public void btnClick(View view)
+    {
+        int id = view.getId();
+        if(id == R.id.register_Button_delete)
+        {
+            if (!strUserName.equals("") && !strPassword.equals(""))
+                new deleteUserRequest(strUserName,strPassword,getApplicationContext()).execute();
+        }
+    }
+
+    private class deleteUserRequest extends AsyncTask<Void,Void,String>
+    {
+        String Username , Password;
+        android.content.Context Context;
+
+        public deleteUserRequest(String username , String password , Context context)
+        {
+            Username = username;
+            Password = password;
+            this.Password = password;
+        }
+
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(Void[] p1)
+        {
+            HashMap hashmap = new HashMap();
+            hashmap.put("username",Username);
+            hashmap.put("password",Password);
+            return Utils.sendData(cons.HOST_LogoutUser ,hashmap);
+        }
+
+        @Override
+        protected void onPostExecute(String result)
+        {
+            pFunctions.showToast(result);
+            if ( result.equals( "شما از حساب خود خارج شدید") )
+            {
+                if( shared.edit().putString("myKey","").commit() )
+                {
+                    Intent i=new Intent(MainActivity.this,RegisterActivity.class);
+                    startActivity(i);
+                    finish();
+                }
+            }
+        }
+    }
+
+    private class checkUserRequest extends AsyncTask<Void,Void,String>
+    {
+        String Username , Password;
+        Context Context;
+
+        public checkUserRequest(String username , String password)
+        {
+            this.Username = username;
+            this.Password = password;
+        }
+
+        @Override
+        protected void onPreExecute()
+        {
+            pb = new ProgressDialog(MainActivity.this);
+            pb.setTitle("در حال بررسی لایسنس");
+            pb.setCancelable(false);
+            pb.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(Void[] p1)
+        {
+            HashMap hashmap = new HashMap();
+            hashmap.put("username",Username);
+            hashmap.put("time",pFunctions.getCurrentTimeMillis());
+            return Utils.sendData(cons.HOST_CheckUser ,hashmap);
+        }
+
+        @Override
+        protected void onPostExecute(String result)
+        {
+            pb.dismiss();
+            pFunctions.showToast(result);
+            if ( result != null )
+            {
+                long l = Long.parseLong(result) ;
+
+                if( l < pFunctions.getCurrentTimeMillis() )
+                {
+                    pFunctions.showToast("لتیسنس شما به پایان رسیده");
+                    if( shared.edit().putString("myKey","").commit() )
+                    {
+
+                        Intent i=new Intent(MainActivity.this,RegisterActivity.class);
+                        startActivity(i);
+                        finish();
+                    }
+                }
+
+                if ( l > pFunctions.getCurrentTimeMillis() )
+                {
+                    activity_mainTextView.setText("کد پستی شما : " + ( (Long.parseLong(result)-pFunctions.getCurrentTimeMillis() )/86400000));
+                }
+            }
+        }
+    }
+
+    private void init()
+    {
+        shared = getSharedPreferences("shared",MODE_PRIVATE);
+        pFunctions=new PublicFunctions(this);
+        cons=new Constants();
+
+        activity_mainTextView=(TextView) findViewById(R.id.activity_mainTextView);
+
+        String strEnText = shared.getString("myKey","");
+        String[]str=pFunctions.base64Decode(strEnText.substring(3,strEnText.length()-3)).split("-");
+
+        if(str.length ==2 )
+        {
+            strUserName = str[0];
+            strPassword = str[1];
+
+
+            new checkUserRequest(strUserName,strPassword).execute();
+        }else{
+            pFunctions.showToast("خطا");
+        }
+    }
 }
+

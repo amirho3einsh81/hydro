@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/white_radius"
+        android:elevation="6dp">
+        <LinearLayout
+            android:background="@drawable/round_back_white_10_100"
+            android:weightSum="2"
+            android:layout_margin="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:fontFamily="@font/iran_yekan_x_w900"
+                android:id="@+id/tabItem1"
+                android:background="@drawable/round_back_white_100"
+                android:textColor="@color/bg_500"
+                android:gravity="center"
+                android:text="آب معدنی"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="50dp"/>
+
+
+            <TextView
+                android:fontFamily="@font/iran_yekan_x_w900"
+                android:id="@+id/tabItem2"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:text="دستگاه تصفیه"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"/>
+
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:id="@+id/fragmentContainer"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>
+
+
+
