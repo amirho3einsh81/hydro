@@ -1,46 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/revers_500"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/revers_500">
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="56.0dip"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img_nitrogen"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:id="@id/img_nitrogen"
+            android:layout_width="100.0dip"
+            android:layout_height="100.0dip"
             android:layout_gravity="center"
-            android:transitionName="img_nitrogen_big"/>
+            android:transitionName="img_nitrogen_big" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="32.0dip"
             android:text="ساخت حساب کاربری"
             android:textColor="@color/gray_700" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layer_phone"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32.0dip"
+            android:layout_marginEnd="32.0dip"
             android:hint="شماره"
             android:textColorHint="@color/gray_500"
-            app:boxCornerRadiusBottomEnd="12dp"
-            app:boxCornerRadiusBottomStart="12dp"
-            app:boxCornerRadiusTopEnd="12dp"
-            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusBottomEnd="12.0dip"
+            app:boxCornerRadiusBottomStart="12.0dip"
+            app:boxCornerRadiusTopEnd="12.0dip"
+            app:boxCornerRadiusTopStart="12.0dip"
             app:boxStrokeColor="@color/green_700"
             app:counterEnabled="true"
             app:counterMaxLength="10"
@@ -48,31 +47,33 @@
             app:hintTextColor="@color/gray_500"
             app:prefixText="+98 "
             app:prefixTextColor="@color/gray_500">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/in_phone"
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:digits="0123456789+"
-                android:gravity="center_vertical|start"
+                android:gravity="start|center"
                 android:inputType="phone"
                 android:lines="1"
                 android:maxLength="10"
-                android:textSize="14sp" />
+                android:textSize="14.0sp" />
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layer_username"
+            android:id="@id/layer_username"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32.0dip"
+            android:layout_marginTop="24.0dip"
+            android:layout_marginEnd="32.0dip"
             android:hint="نام کاربری"
             android:textColorHint="@color/gray_500"
-            app:boxCornerRadiusBottomEnd="12dp"
-            app:boxCornerRadiusBottomStart="12dp"
-            app:boxCornerRadiusTopEnd="12dp"
-            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusBottomEnd="12.0dip"
+            app:boxCornerRadiusBottomStart="12.0dip"
+            app:boxCornerRadiusTopEnd="12.0dip"
+            app:boxCornerRadiusTopStart="12.0dip"
             app:boxStrokeColor="@color/green_700"
             app:counterEnabled="true"
             app:counterMaxLength="32"
@@ -80,30 +81,29 @@
             app:hintTextColor="@color/gray_500">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/in_username"
-                android:layout_width="match_parent"
+                android:id="@id/in_username"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical|start"
+                android:gravity="start|center"
                 android:inputType="textVisiblePassword"
                 android:lines="1"
                 android:maxLength="26"
-                android:textSize="14sp" />
+                android:textSize="14.0sp" />
         </com.google.android.material.textfield.TextInputLayout>
-
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layer_posti"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32.0dip"
+            android:layout_marginEnd="32.0dip"
             android:hint="کد پستی"
             android:textColorHint="@color/gray_500"
-            app:boxCornerRadiusBottomEnd="12dp"
-            app:boxCornerRadiusBottomStart="12dp"
-            app:boxCornerRadiusTopEnd="12dp"
-            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusBottomEnd="12.0dip"
+            app:boxCornerRadiusBottomStart="12.0dip"
+            app:boxCornerRadiusTopEnd="12.0dip"
+            app:boxCornerRadiusTopStart="12.0dip"
             app:boxStrokeColor="@color/green_700"
             app:counterEnabled="true"
             app:counterMaxLength="14"
@@ -114,29 +114,29 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/in_melli"
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical|start"
+                android:gravity="start|center"
                 android:inputType="textVisiblePassword"
                 android:lines="1"
                 android:maxEms="14"
                 android:maxLength="14"
-                android:textSize="14sp" />
+                android:textSize="14.0sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layer_pass_confirm"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32.0dip"
+            android:layout_marginEnd="32.0dip"
             android:hint="رمز عبور"
             android:textColorHint="@color/gray_500"
-            app:boxCornerRadiusBottomEnd="12dp"
-            app:boxCornerRadiusBottomStart="12dp"
-            app:boxCornerRadiusTopEnd="12dp"
-            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusBottomEnd="12.0dip"
+            app:boxCornerRadiusBottomStart="12.0dip"
+            app:boxCornerRadiusTopEnd="12.0dip"
+            app:boxCornerRadiusTopStart="12.0dip"
             app:boxStrokeColor="@color/green_700"
             app:counterEnabled="true"
             app:counterMaxLength="14"
@@ -144,32 +144,32 @@
             app:errorEnabled="true"
             app:helperTextTextColor="@color/green_700"
             app:hintTextColor="@color/gray_500">
+
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/in_pass"
-                android:layout_width="match_parent"
+                android:id="@id/in_pass"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical|start"
+                android:gravity="start|center"
                 android:inputType="textVisiblePassword"
                 android:lines="1"
                 android:maxEms="14"
                 android:maxLength="14"
-                android:textSize="14sp" />
+                android:textSize="14.0sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layer_pass"
+            android:id="@id/layer_pass"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32.0dip"
+            android:layout_marginEnd="32.0dip"
             android:hint="تکرار رمز عبور"
             android:textColorHint="@color/gray_500"
-            app:boxCornerRadiusBottomEnd="12dp"
-            app:boxCornerRadiusBottomStart="12dp"
-            app:boxCornerRadiusTopEnd="12dp"
-            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusBottomEnd="12.0dip"
+            app:boxCornerRadiusBottomStart="12.0dip"
+            app:boxCornerRadiusTopEnd="12.0dip"
+            app:boxCornerRadiusTopStart="12.0dip"
             app:boxStrokeColor="@color/green_700"
             app:counterEnabled="true"
             app:counterMaxLength="14"
@@ -180,30 +180,29 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/in_pass_confirm"
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical|start"
+                android:gravity="start|center"
                 android:inputType="textVisiblePassword"
                 android:lines="1"
                 android:maxEms="14"
                 android:maxLength="14"
-                android:textSize="14sp" />
+                android:textSize="14.0sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <androidx.appcompat.widget.AppCompatTextView
-            android:onClick="btnClick"
-            android:id="@+id/submit"
-            android:layout_width="match_parent"
+            android:id="@id/submit"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="48dp"
+            android:layout_marginStart="48.0dip"
+            android:layout_marginTop="32.0dip"
+            android:layout_marginEnd="48.0dip"
             android:background="@drawable/button_filledbox"
             android:backgroundTint="@color/green_700"
             android:gravity="center"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
+            android:onClick="btnClick"
+            android:paddingTop="12.0dip"
+            android:paddingBottom="12.0dip"
             android:text="ادامه"
             android:textColor="@color/wight" />
 
@@ -212,15 +211,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:paddingLeft="12dp"
-            android:paddingTop="6dp"
-            android:paddingRight="12dp"
-            android:paddingBottom="6dp"
+            android:layout_marginStart="32.0dip"
+            android:layout_marginTop="16.0dip"
+            android:layout_marginEnd="32.0dip"
+            android:paddingLeft="12.0dip"
+            android:paddingTop="6.0dip"
+            android:paddingRight="12.0dip"
+            android:paddingBottom="6.0dip"
             android:text="حساب کاربری دارم"
             android:textColor="@color/gray_700"
-            android:textSize="10sp" />
+            android:textSize="10.0sp" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </RelativeLayout>
